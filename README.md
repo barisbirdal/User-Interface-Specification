@@ -1,6 +1,6 @@
 # User Interface Specification: User Management Screen
 
-## 1. Overview
+# 1. Overview
 This document outlines the user interface specifications and behavioral requirements for the "User Management" screen. This interface allows administrators to view, filter, create, and edit user accounts within the system.
 
 ## 2. Initial Page State
