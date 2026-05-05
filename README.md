@@ -22,11 +22,11 @@ The screen has a toolbar and a main area that is split into two columns. The lef
 
 ### 3.1. Top Action Toolbar
 
-* The "[ + New User ]" button is blue and located at the top left. When you click it the form on the side of the screen clears and you can start creating a new user.
+* The "New User" button is blue and located at the top left. When you click it the form on the side of the screen clears and you can start creating a new user.
 
 * The "Hide Disabled User" checkbox is next to the New User button. When you check or uncheck it the list of users on the side of the screen updates to show or hide disabled users.
 
-* The "[ Save User ]" button is blue and located at the right. When you click it the form data gets sent to the system to create an user or update an existing one.
+* The "Save User" button is blue and located at the right. When you click it the form data gets sent to the system to create an user or update an existing one.
 
 ### 3.2. Data Grid (Left Panel)
 
