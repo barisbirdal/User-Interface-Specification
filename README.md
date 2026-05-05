@@ -1,61 +1,61 @@
 # User Interface Specification: User Management Screen
 
 ## 1. Overview
-This document outlines the user interface specifications and behavioral requirements for the "User Management" screen. This interface allows administrators to view, filter, create, and edit user accounts within the system.
+
+The User Management screen is where administrators can view, filter, create and edit user accounts within the system. This document outlines how the User Management screen should work and what it should look like.
 
 ## 2. Initial Page State
-When a user navigates to the User Management screen, the following initial state should be established:
-* **Data Grid (Left Panel):** Populated with the existing list of users fetched from the backend. 
-* **Filter State:** The `Hide Disabled User` checkbox is **checked** by default. Consequently, the grid should initially filter out any users where the `Enabled` status is false.
-* **Detail Form (Right Panel):** Should be in a read-only state or hidden until a specific user row is selected from the grid, OR it should default to the "New User" creation state with all fields empty if that is the preferred default flow.
-* **Action Buttons:** The `Save User` button should remain disabled until valid modifications are made in the Detail Form.
+
+When you go to the User Management screen you should see the following:
+
+* The list of users on the side of the screen should already be populated with the existing users from the system.
+
+* The "Hide Disabled User" checkbox should be checked by default so you do not see any users who are disabled.
+
+* The form on the side of the screen should either be empty and ready to create a new user or it should show the details of a user you selected from the list.
+
+* The "Save User" button should be disabled until you make some changes to the form.
 
 ## 3. UI Layout & Component Details
 
-The screen is divided into a top action toolbar and a main content area split into two columns (Data Grid on the left, Form on the right).
+The screen has a toolbar and a main area that is split into two columns. The left column has a list of users and the right column has a form to edit user details.
 
 ### 3.1. Top Action Toolbar
-* **`[ + New User ]` Button:** 
-  * **Type:** Primary Action Button (Blue).
-  * **Location:** Top left.
-  * **Action:** Clears the Detail Form on the right, sets the form title to "New User", and readies the inputs for a new entry.
-* **`Hide Disabled User` Checkbox:**
-  * **Type:** Checkbox input with label.
-  * **Location:** Next to the New User button.
-  * **Action:** Triggers a client-side or server-side filter on the Data Grid to show/hide rows where `Enabled == false`.
-* **`[ Save User ]` Button:**
-  * **Type:** Primary Action Button (Blue).
-  * **Location:** Top right.
-  * **Action:** Submits the form data from the Right Panel to the API (handles both POST for new users and PUT/PATCH for existing users).
+
+* The "[ + New User ]" button is blue and located at the top left. When you click it the form on the side of the screen clears and you can start creating a new user.
+
+* The "Hide Disabled User" checkbox is next to the New User button. When you check or uncheck it the list of users on the side of the screen updates to show or hide disabled users.
+
+* The "[ Save User ]" button is blue and located at the right. When you click it the form data gets sent to the system to create an user or update an existing one.
 
 ### 3.2. Data Grid (Left Panel)
-* **Component Type:** Interactive Data Table / Grid.
-* **Columns:**
-  * `ID`: Numeric identifier.
-  * `User Name`: String.
-  * `Email`: String (e.g., admin@piworks.net).
-  * `Enabled`: Boolean indicator (displays as "true" or "false", or localized strings).
-* **Grid Features:**
-  * **Sorting:** Clicking on any column header toggles ascending/descending sorting for that column (indicated by up/down arrows).
-  * **Filtering:** Clicking the filter icon (funnel) on a column header opens an inline search/filter input for specific column queries.
-  * **Selection:** Clicking a row highlights it (e.g., in a light blue color) and triggers an event to populate the Right Panel with that user's data.
+
+* The list of users is a table.
+
+* The columns show the users ID, username, email and whether they are enabled or not.
+
+* You can sort the list by clicking on any column header.
+
+* You can filter the list by clicking the filter icon on a column header and typing in what you're looking for.
+
+* When you click on a row it highlights and the form on the side of the screen populates with that users details.
 
 ### 3.3. User Detail Form (Right Panel)
-* **Component Type:** Data Entry Form.
-* **Title:** Dynamic. Displays "New User" when creating, or "Edit User" (or similar) when a row is selected.
-* **Input Fields:**
-  * **`Username`:** Text Input (Alphanumeric).
-  * **`Display Name`:** Text Input.
-  * **`Phone`:** Text Input (Should support standard phone number formatting/validation).
-  * **`Email`:** Text Input (Must validate against standard email regex, e.g., *@*.com).
-  * **`User Roles`:** Multi-select Dropdown.
-    * Contains a placeholder: *"Select user roles..."*
-    * Options visible in dropdown: `Guest`, `Admin`, `SuperAdmin`.
-    * Supports selecting multiple roles.
-  * **`Enabled`:** Checkbox. Determines active/inactive status.
 
-## 4. Component Behaviors & Interactions
-1. **Row Selection to Edit:** When a user clicks a row in the Left Panel (e.g., ID 2, Test User), the Right Panel form immediately populates with that user's specific details. The form title updates contextually.
-2. **Form Validation:** The `Save User` button should only trigger the save function if required fields (Username, Email, User Roles) are filled and valid. Invalid fields should display a red border and an inline error message upon attempted save.
-3. **Role Selection:** When opening the `User Roles` dropdown, multiple items can be clicked. Selected roles should display as chips/tags within the input box.
-4. **State Persistence:** Sorting and filtering states on the Data Grid should be maintained even after saving a user, to prevent jarring UX resets.
+* The form is where you can edit user details.
+
+* The title of the form changes depending on whether you're creating a new user or editing an existing one.
+
+* The form has fields for the users username, display name, phone number, email, user roles and whether they are enabled or not.
+
+* The user roles field is a menu where you can select multiple roles.
+
+## 4. Component. Interactions
+
+1. When you select a user from the list the form on the side of the screen populates with their details.
+
+2. The "Save User" button only works if you have filled in all the required fields and they are valid. If you try to save and something is wrong the field will turn red. Show an error message.
+
+3. When you select user roles they appear as chips or tags, in the input box.
+
+4. The system remembers how you sorted and filtered the list of users even after you save changes to a user. This way you do not have to redo your sorting and filtering every time you make a change.
